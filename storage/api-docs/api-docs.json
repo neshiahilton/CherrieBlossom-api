@@ -1,0 +1,276 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Cherrie Blossom API",
+        "description": "This  is the API documentation  for Cherrie Blossom.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
+    "paths": {
+        "/api/bouquet": {
+            "get": {
+                "tags": [
+                    "Bouquet"
+                ],
+                "summary": "Display a list of all bouquets",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Bouquet"
+                ],
+                "summary": "Store a new bouquet",
+                "operationId": "storeBouquet",
+                "requestBody": {
+                    "description": "Bouquet object that needs to be added to the store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Bouquet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Bouquet created successfully"
+                    },
+                    "400": {
+                        "description": "Invalid data provided"
+                    }
+                }
+            }
+        },
+        "/api/bouquet/{id}": {
+            "get": {
+                "tags": [
+                    "Bouquet"
+                ],
+                "summary": "Display a specific bouquet",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of bouquet to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Bouquet"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Bouquet not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Bouquet"
+                ],
+                "summary": "Update an existing bouquet",
+                "operationId": "updateBouquet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of bouquet that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Bouquet object that needs to be updated",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Bouquet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Bouquet"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid data supplied"
+                    },
+                    "404": {
+                        "description": "Bouquet not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Bouquet"
+                ],
+                "summary": "Delete a bouquet",
+                "operationId": "deleteBouquet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of bouquet to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful, no content"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Bouquet not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Bouquet": {
+                "required": [
+                    "name",
+                    "price",
+                    "stock"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "The unique identifier for the bouquet.",
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "name": {
+                        "description": "The name of the bouquet.",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "A detailed description of the bouquet.",
+                        "type": "string"
+                    },
+                    "price": {
+                        "description": "The price of the bouquet.",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "stock": {
+                        "description": "The available stock of the bouquet.",
+                        "type": "integer"
+                    },
+                    "image": {
+                        "description": "URL or path to the bouquet image.",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Creation timestamp.",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp.",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User model schema",
+                "properties": {
+                    "id": {
+                        "description": "Class User.",
+                        "type": "integer",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "user@example.com"
+                    },
+                    "email_verified_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "example": "2025-06-27T01:21:49.000000Z",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "example": "2025-06-27T01:21:49.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "example": "2025-06-27T01:21:49.000000Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Bouquet",
+            "description": "Bouquet"
+        }
+    ]
+}

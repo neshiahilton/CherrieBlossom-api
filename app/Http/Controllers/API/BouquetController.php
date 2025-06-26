@@ -3,15 +3,33 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bouquet; // Ganti dari Book ke Bouquet
+use App\Models\Bouquet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use OpenApi\Annotations as OA;
+
+/**
+ * Classs BouquetController.
+ * 
+ * @author Neshia Hilton <taneshia.422024002@civitas.ukrida.ac.id>
+ * 
+ */
 
 class BouquetController extends Controller
 {
     /**
-     * Menampilkan semua data buket.
+     * @OA\Get(
+     * path="/api/bouquet",
+     * tags={"Bouquet"},
+     * summary="Display a list of all bouquets",
+     * operationId="index",
+     * @OA\Response(
+     *      response=200,
+     *      description="Successful",
+     *      @OA\JsonContent()
+     *    )
+     * )
      */
     public function index()
     {
@@ -23,7 +41,25 @@ class BouquetController extends Controller
     }
 
     /**
-     * Menyimpan data buket baru.
+     * @OA\Post(
+     *      path="/api/bouquet",
+     *      tags={"Bouquet"},
+     *      summary="Store a new bouquet",
+     *      operationId="storeBouquet",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Bouquet object that needs to be added to the store",
+     *          @OA\JsonContent(ref="#/components/schemas/Bouquet")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Bouquet created successfully"
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *      description="Invalid data provided"
+     *      )
+     * )
      */
     public function store(Request $request)
     {
@@ -54,9 +90,38 @@ class BouquetController extends Controller
         }
     }
 
-    /**
-     * Menampilkan satu data buket spesifik.
+/**
+     * @OA\Get(
+     *      path="/api/bouquet/{id}",
+     *      tags={"Bouquet"},
+     *      summary="Display a specific bouquet",
+     *      operationId="show",
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of bouquet to return",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int64"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/Bouquet")
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Invalid ID supplied"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Bouquet not found"
+     *      )
+     * )
      */
+
     public function show(string $id)
     {
         $bouquet = Bouquet::findOrFail($id);
@@ -66,8 +131,41 @@ class BouquetController extends Controller
         ], 200);
     }
 
-    /**
-     * Mengubah data buket yang sudah ada.
+/**
+     * @OA\Put(
+     *      path="/api/bouquet/{id}",
+     *      tags={"Bouquet"},
+     *      summary="Update an existing bouquet",
+     *      operationId="updateBouquet",
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of bouquet that needs to be updated",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int64"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *              description="Bouquet object that needs to be updated",
+     *              required=true,
+     *              @OA\JsonContent(ref="#/components/schemas/Bouquet")
+     *      ),
+     *      @OA\Response(
+     *              response=200,
+     *              description="Successful operation",
+     *              @OA\JsonContent(ref="#/components/schemas/Bouquet")
+     *      ),
+     *      @OA\Response(
+     *              response=400,
+     *              description="Invalid data supplied"
+     *      ),
+     *      @OA\Response(
+     *              response=404,
+     *              description="Bouquet not found"
+     *      )
+     * )
      */
     public function update(Request $request, string $id)
     {
@@ -98,8 +196,35 @@ class BouquetController extends Controller
         }
     }
 
-    /**
-     * Menghapus data buket.
+/**
+     * @OA\Delete(
+     *      path="/api/bouquet/{id}",
+     *      tags={"Bouquet"},
+     *      summary="Delete a bouquet",
+     *      operationId="deleteBouquet",
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of bouquet to be deleted",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int64"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *      response=204,
+     *      description="Successful, no content"
+     *      ),
+     *      @OA\Response(
+     *      response=400,
+     *      description="Invalid ID supplied"
+     *      ),
+     *      @OA\Response(
+     *      response=404,
+     *      description="Bouquet not found"
+     *      )
+     * )
      */
     public function destroy(string $id)
     {
