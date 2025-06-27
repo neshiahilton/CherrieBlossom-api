@@ -63,7 +63,8 @@ class BookController extends Controller
  *          in="query",
  *          description="Filter berdasarkan kategori (contoh: Wedding, Graduation, Romance)",
  *          required=false,
- *          @OA\Schema(type="string")
+ *          @OA\Schema(type="string"
+ *          )
  *      ),
  *     @OA\Parameter(
  *         name="_sort_by",
@@ -77,6 +78,7 @@ class BookController extends Controller
  *     ),
  * )
  */
+
 public function index(Request $request)
 {
     try {
@@ -133,7 +135,7 @@ public function index(Request $request)
         throw new \Symfony\Component\HttpKernel\Exception\HttpException(500, 'Invalid data : ' . $e->getMessage());
     }
 }
-
+    
 /** 
 * @OA\Post(
 *       path="/api/book",
@@ -169,11 +171,8 @@ public function index(Request $request)
     try {
         $data = $request->json()->all();
         $validator = Validator::make($data, [
-            'name'        => 'required|unique:books|max:255', // Nama item unik di tabel 'books'
-            'category'    => 'nullable|string|max:100',
-            'description' => 'nullable|string',
-            'price'       => 'required|numeric|min:0',
-            'image'       => 'nullable|string|max:255',
+            'title'  => 'required|unique:books',
+            'author' => 'required|max:100',
         ]);
         if ($validator->fails()) {
             throw new HttpException(400, $validator->messages()->first());
@@ -189,7 +188,6 @@ public function index(Request $request)
         throw new HttpException(400, "Invalid data - {$exception->getMessage()}");
     }
 }
-
 
     /**
      * @OA\Get(
@@ -266,7 +264,7 @@ public function index(Request $request)
      *          description="Request body description",
      *          @OA\JsonContent(
      *              ref="#/components/schemas/Book",
-     *                  example={"name": "Buket Bunga Lily Putih Elegan", "category": "Pernikahan",
+          *             example={"name": "Buket Bunga Lily Putih Elegan", "category": "Pernikahan",
      *                  "image": "https://i.pinimg.com/564x/2b/9b/6c/2b9b6c23a02150d35b5a793623b5d3fe.jpg",
      *                  "description": "Rangkaian bunga lily putih yang melambangkan kesucian dan ketulusan, cocok untuk hadiah di hari spesial atau sebagai dekorasi yang menawan.",
      *                  "price": 350000}

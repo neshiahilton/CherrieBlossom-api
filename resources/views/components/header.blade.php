@@ -1,5 +1,5 @@
 <!-- header -->
-<div class="header-area header-area--default" style="background-color: #2e2e2c;">
+<div class="header-area header-area--default" style="background-color:white;">
     <!-- Header Bottom Wrap Start -->
     <header class="header-area   header-sticky">
         <div class="container-fluid container-fluid--cp-100">
@@ -18,8 +18,8 @@
                 <div class="col-lg-3 col-lg-3 col-6">
                     <div class="header-right-items content__hidden d-none d-md-block">
                         <span class="phone-number font-lg-p" title="Call us for fast delivery">
-                            <a href="#cfd"><i class="icon-telephone" style="color: white;" ></i>&nbsp;&nbsp;<small
-                                    class="text-color-primary"><b>+(62) 851-2102-9543</b></small></a>
+                            <a href="#cfd"><i class="icon-telephone" style="color: #f2a7a7;" ></i>&nbsp;&nbsp;<small
+                                    class="text-color-primary"><b>+(62) 811-9792-811</b></small></a>
                         </span>
                     </div>
                     <div class="logo__hidden text-start">
@@ -85,15 +85,9 @@
     </header>
     <!-- Header Bottom Wrap End -->
 </div>
-<!-- end header -->
+    <!-- =============== End of header area =============== -->
 
-@php
-    // echo "<pre>";
-    // print_r($_COOKIE);
-    // echo "</pre>";
-@endphp
-
-<div class="header-login-register-wrapper modal fade" id="authModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="header-login-register-wrapper modal fade" id="authModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-box-wrapper">
@@ -105,70 +99,73 @@
                         <li class="tab__item nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab_list_07" role="tab">Our Register</a>
                         </li>
-
                     </ul>
-                </div>
-                <div class="tab-content content-modal-box">
 
-                    <div class="tab-pane fade show active" id="tab_list_06" role="tabpanel">
-                        <form class="account-form-box" id="form-login">
-                            <h6 class="mb-3">Login your account</h6>
-                            <b id="form-login-error" class="text-red"></b>
-                            <div class="single-input">
-                                <input name="email" type="text" placeholder="Email" required>
+                    <div class="tab-content content-modal-box">
+                        {{-- LOGIN FORM --}}
+                        <div class="tab-pane fade show active" id="tab_list_06" role="tabpanel">
+                            <form class="account-form-box" id="form-login">
+                                <h6 class="mb-3">Login your account</h6>
+                                <b id="form-login-error" class="text-red"></b>
+
+                                <div class="single-input">
+                                    <input name="email" type="email" placeholder="Email" required>
+                                </div>
+                                <div class="single-input">
+                                    <input name="password" type="password" placeholder="Password" required>
+                                </div>
+                                <div class="checkbox-wrap mt-10">
+                                    <label class="label-for-checkbox inline mt-15">
+                                        <input class="input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever">
+                                        <span>Remember me</span>
+                                    </label>
+                                    <a href="#" class="mt-10">Lost your password?</a>
+                                </div>
+                                <div class="button-box mt-25">
+                                    <button type="button" class="btn btn--full btn-black" id="form-login-btn">Log in</button>
+                                </div>
+                            </form>
+                            <div id="form-login-loading" style="text-align:center;display:none">
+                                <img src="{{asset('assets/images/bg/loading.gif')}}" style="width: 300px">
                             </div>
-                            <div class="single-input">
-                                <input name="password" type="password" placeholder="Password" required>
-                            </div>
-                            <div class="checkbox-wrap mt-10">
-                                <label class="label-for-checkbox inline mt-15">
-                                    <input class="input-checkbox" name="rememberme" type="checkbox" id="rememberme"
-                                        value="forever"> <span>Remember me</span>
-                                </label>
-                                <a href="#" class=" mt-10">Lost your password?</a>
-                            </div>
-                            <div class="button-box mt-25">
-                                <a href="#" class="btn btn--full btn--black" id="form-login-btn">Log in</a>
-                            </div>
-                        </form>
-                        <div id="form-login-loading" style="text-align:center;display:none">
-                            <img src="{{asset('assets/images/bg/loading.gif')}}" style="width: 300px">
                         </div>
-                    </div>
 
-                    <div class="tab-pane fade" id="tab_list_07" role="tabpanel">
-                        <form class="account-form-box" id="form-register">
-                            <h6 class="mb-6">Register An Account</h6>
-                            <b id="form-register-error" class="text-red"></b>
-                            <div class="single-input">
-                                <input name="name" type="text" placeholder="Name" required>
+                        {{-- REGISTER FORM --}}
+                        <div class="tab-pane fade" id="tab_list_07" role="tabpanel">
+                            <form class="account-form-box" id="form-register">
+                                <h6 class="mb-6">Register An Account</h6>
+                                <b id="form-register-error" class="text-red"></b>
+
+                                <div class="single-input">
+                                    <input name="name" type="text" placeholder="Name" required>
+                                </div>
+                                <div class="single-input">
+                                    <input name="email" type="email" placeholder="Email Address" required>
+                                </div>
+                                <div class="single-input">
+                                    <input name="password" type="password" placeholder="Password" required>
+                                </div>
+                                <div class="single-input">
+                                    <input name="password_confirmation" type="password" placeholder="Confirm Password" required>
+                                </div>
+                                <p class="mt-15">
+                                    Your personal data will be used to support your experience throughout this website, 
+                                    to manage access to your account, and for other purposes described in our
+                                    <a href="#" class="text-color-primary" target="_blank">privacy policy</a>.
+                                </p>
+                                <div class="button-box mt-25">
+                                    <button type="button" class="btn btn-full btn-black" id="form-register-btn">Register</button>
+                                </div>
+                            </form>
+                            <div id="form-register-loading" style="text-align:center;display:none">
+                                <img src="{{asset('assets/images/bg/loading.gif')}}" style="width: 300px">
                             </div>
-                            <div class="single-input">
-                                <input name="email" type="text" placeholder="Email Address" required>
-                            </div>
-                            <div class="single-input">
-                                <input name="password" type="password" placeholder="Password" required>
-                            </div>
-                            <div class="single-input">
-                                <input name="password_confirmation" type="password" placeholder="Confirm Password"
-                                    required>
-                            </div>
-                            <p class="mt-15">
-                                Your personal data will be used to support your experience throughout this website,
-                                to manage access to your account, and for other purposes described in our
-                                <a href="#" class="text-color-primary" target="_blank">privacy policy</a>.
-                            </p>
-                            <div class="button-box mt-25">
-                                <a href="#" class="btn btn--full btn--black" id="form-register-btn">Register</a>
-                            </div>
-                        </form>
-                        <div id="form-register-loading" style="text-align:center;display:none">
-                            <img src="{{asset('assets/images/bg/loading.gif')}}" style="width: 300px">
                         </div>
-                    </div>
-
-                </div>
+                    </div> <!-- /.tab-content -->
+                </div> <!-- /.helendo-tabs -->
             </div>
         </div>
     </div>
 </div>
+
+<!-- =============== Header area end =============== -->

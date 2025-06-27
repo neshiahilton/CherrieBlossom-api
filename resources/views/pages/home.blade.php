@@ -20,19 +20,17 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="about-us-content_6 text-center">
-                            <h2>Scooping&nbsp;&nbsp;Up&nbsp;&nbsp;Great<br>Reads</h2>
+                            <h2>Where&nbsp;&nbsp;Every&nbsp;&nbsp;Petals<br>Whispers Love</h2>
                             <p>
                                 <small>
-                                    Tired of searching for your next great read? Let us do the scooping.
-                                    At Expert Spoon, we serve up a delicious menu of books, expertly chosen for every taste.
-                                    From spicy thrillers and sweet romances to hearty classics and fresh non-fiction, our 
-                                    shelves are stocked with stories that will satisfy your literary cravings. Our passionate 
-                                    team is here to help you find the perfect ingredient for your imagination. 
-                                    Stop by and see what we're serving today! &#10084;
+                                    Finding the right flowers should be as beautiful as the flowers themselves.
+                                    At Cherrie Blossom, we make it simple. We offer a fresh, curated selection of stunning blooms for every moment that matters.
+                                    Whether you're celebrating love, friendship, or a special milestone, our modern arrangements are designed to deliver joy and beauty, straight from our hands to yours.
+                                    Stop by and see what we're serving today! &#127800;
                                 </small>
                             </p>
-                            <p class="mt-5">Ready to dig in?
-                                <span class="text-color-secondary">Your next favorite story is waiting.</span>
+                            <p class="mt-5">Let your feelings bloom.
+                                <span class="text-color-secondary">Explore our collection today.</span>
                             </p>
                         </div>
                     </div>

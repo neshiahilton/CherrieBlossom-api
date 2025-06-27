@@ -171,6 +171,7 @@ return [
         'securityDefinitions' => [
             'securitySchemes' => [
 
+            // 1. Skema input manual token Bearer
             'passport_token_ready' => [
                 'type' => 'http',
                 'scheme' => 'bearer',
@@ -179,6 +180,7 @@ return [
                 'in' => 'header',
             ],
 
+            // 2. Skema oauth2 default dari Laravel Passport
             'passport' => [
                 'type' => 'oauth2',
                 'description' => 'Laravel passport oauth2 security.',

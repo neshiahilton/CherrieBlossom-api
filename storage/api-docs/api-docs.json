@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Cherrie Blossom API",
-        "description": "This  is the API documentation  for Cherrie Blossom.",
+        "title": "My API Documentation",
+        "description": "API documentation for my Laravel application",
         "version": "1.0.0"
     },
     "paths": {
@@ -176,9 +176,9 @@
                         }
                     },
                     {
-                        "name": "_category",
+                        "name": "_publisher",
                         "in": "query",
-                        "description": "Filter berdasarkan kategori (contoh: Wedding, Graduation, Romance)",
+                        "description": "search by publisher like name",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -187,7 +187,7 @@
                     {
                         "name": "_sort_by",
                         "in": "query",
-                        "description": "Urutkan berdasarkan (contoh: price_asc, price_desc, latest_added)",
+                        "description": "word to search",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -198,50 +198,6 @@
                 "responses": {
                     "200": {
                         "description": "successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "book"
-                ],
-                "summary": "Store a newly created item",
-                "description": "* @OA\\Post(\n*       path=\"/api/book\",\n*       tags={\"book\"},\n*       summary=\"Store a newly created item\",\n*       operationId=\"store\",\n*       @OA\\Response(\n*           response=400,\n*           description=\"Invalid input\",\n*           @OA\\JsonContent()\n*       ),\n*       @OA\\Response(\n*           response=201,\n*           description=\"Successful\",\n*           @OA\\JsonContent()\n*       ),\n*       @OA\\RequestBody(\n*           required=true,\n*           description=\"Request body description\",\n*           @OA\\JsonContent(\n*               ref=\"#/components/schemas/Book\",\n*               example={\"name\": \"Buket Bunga Lily Putih Elegan\", \"category\": \"Pernikahan\",\n*               \"image\": \"https://i.pinimg.com/564x/2b/9b/6c/2b9b6c23a02150d35b5a793623b5d3fe.jpg\",\n*               \"description\": \"Rangkaian bunga lily putih yang melambangkan kesucian dan ketulusan, cocok untuk hadiah di hari spesial atau sebagai dekorasi yang menawan.\",\n*               \"price\": 350000}\n*           )\n*       )\n* )",
-                "operationId": "store",
-                "requestBody": {
-                    "description": "Request body description",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Book"
-                            },
-                            "example": {
-                                "name": "Buket Bunga Lily Putih Elegan",
-                                "category": "Pernikahan",
-                                "image": "https://i.pinimg.com/564x/2b/9b/6c/2b9b6c23a02150d35b5a793623b5d3fe.jpg",
-                                "description": "Rangkaian bunga lily putih yang melambangkan kesucian dan ketulusan, cocok untuk hadiah di hari spesial atau sebagai dekorasi yang menawan.",
-                                "price": 350000
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "400": {
-                        "description": "Invalid input",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "201": {
-                        "description": "Successful",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -324,11 +280,13 @@
                                 "$ref": "#/components/schemas/Book"
                             },
                             "example": {
-                                "name": "Buket Bunga Lily Putih Elegan",
-                                "category": "Pernikahan",
-                                "image": "https://i.pinimg.com/564x/2b/9b/6c/2b9b6c23a02150d35b5a793623b5d3fe.jpg",
-                                "description": "Rangkaian bunga lily putih yang melambangkan kesucian dan ketulusan, cocok untuk hadiah di hari spesial atau sebagai dekorasi yang menawan.",
-                                "price": 350000
+                                "title": "Eating Clean",
+                                "author": "Inge Tumiwa-Bachrens",
+                                "publisher": "Kawan Pustaka",
+                                "publication_year": "2016",
+                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055/33511107.jpg",
+                                "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
+                                "price": 85000
                             }
                         }
                     }
@@ -416,6 +374,80 @@
                     "title",
                     "author"
                 ],
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "Title",
+                        "description": "Title of the book",
+                        "type": "string",
+                        "example": "Who Moved My Cheese?"
+                    },
+                    "author": {
+                        "title": "Author",
+                        "description": "Author of the book",
+                        "type": "string",
+                        "example": "Spencer Johnson"
+                    },
+                    "publisher": {
+                        "title": "Publisher",
+                        "description": "Publisher of the book",
+                        "type": "string",
+                        "example": "Putnam"
+                    },
+                    "publication_year": {
+                        "title": "Publication Year",
+                        "description": "Publication year of the book",
+                        "type": "string",
+                        "example": "1998"
+                    },
+                    "cover": {
+                        "title": "Cover",
+                        "description": "Cover image URL of the book",
+                        "type": "string",
+                        "example": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388639171/4894.jpg"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the book",
+                        "type": "string",
+                        "example": "A simple parable that reveals profound truths about change"
+                    },
+                    "price": {
+                        "title": "Price",
+                        "description": "Price of the book",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 45000
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
                 "xml": {
                     "name": "Book"
                 }

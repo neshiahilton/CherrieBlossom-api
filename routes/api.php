@@ -18,6 +18,12 @@ Route::prefix('user')->group(function () {
 
 Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
+
+
+
+
+
+
 Route::resource('book', BookController::class)
     ->only(['index', 'show']);
 

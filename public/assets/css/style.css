@@ -40,6 +40,9 @@
 =             01. Default Css                 =
 =============================================*/
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Mr+De+Haviland&family=Prata&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart");
+
+
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -261,11 +264,11 @@ label {
 }
 
 .text-color-primary {
-  color: #ffffff;
+  color: 			#f2a7a7;
 }
 
 .text-color-secondary {
-  color: #dcb14a;
+  color: #535925;
 }
 
 .text-black {
@@ -551,13 +554,13 @@ input[type=checkbox] {
 }
 
 .box-home {
-  background-color: #ffeece;
+  background-color: #f4f5f7;
 }
 
 .page-box {
   max-width: 1330px;
   margin: auto;
-  background-color: #ffeece;
+  background-color: #fff;
 }
 .page-box .header-sticky.is-sticky {
   max-width: 1330px;
@@ -1900,6 +1903,7 @@ input[type=checkbox] {
   border-bottom: 1px solid #ddd;
   margin-top: 10px;
   padding-bottom: 10px;
+  
 }
 
 .header-sticky .logo__hidden {
@@ -4292,7 +4296,7 @@ input[type=checkbox] {
   position: absolute;
   top: 0;
   left: 0;
-  color: #ffeece;
+  color: #fff;
 }
 
 .banner-video-box {
@@ -4472,6 +4476,14 @@ input[type=checkbox] {
 .sm-image img {
   width: 100px;
 }
+.product-thumbnail {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* bikin bentuknya kotak */
+  object-fit: cover; /* atau pakai contain kalau mau gambar utuh tanpa crop */
+  border-radius: 8px;
+  display: block;
+}
+
 .product-details-thumbs-2 {
   float: left;
   width: 110px;

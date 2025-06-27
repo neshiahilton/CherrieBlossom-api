@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use OpenApi\Annotations as OA;
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
@@ -10,7 +13,7 @@ use OpenApi\Annotations as OA;
  *      description="This  is the API documentation  for Cherrie Blossom."
  * )
  */
-abstract class Controller
+class Controller extends BaseController
 {
-    //
+    use AuthorizesRequests, ValidatesRequests;
 }
