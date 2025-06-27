@@ -86,50 +86,51 @@ public function index(Request $request)
         $offset = ($page - 1) * $limit;
 
         $query = Book::query();
-
-        if ($request->get('_search')) {
-            $query->where(function($q) use ($request) {
-                $q->where('title', 'like', '%' . $request->get('_search') . '%')
-                  ->orWhere('author', 'like', '%' . $request->get('_search') . '%');
-            });
+        
+        // Filter by _search (nama produk)
+        if ($request->has('_search')) {
+            $search = $request->query('_search');
+            $query->where('name', 'like', '%' . $search . '%');
         }
 
-        if ($request->get('_publisher')) {
-            $query->where('publisher', 'like', '%' . $request->get('_publisher') . '%');
+        // Filter by _category (misal: Wedding, Graduation, Romance)
+        if ($request->has('_category')) {
+            $query->where('category', 'like', '%' . $request->query('_category') . '%');
         }
 
-        if ($request->get('_sort_by')) {
-            switch ($request->get('_sort_by')) {
-                case 'latest_publication':
-                    $query->orderBy('publication_year', 'DESC');
-                    break;
+        // Sorting
+        if ($request->has('_sort_by')) {
+            switch ($request->query('_sort_by')) {
                 case 'latest_added':
-                    $query->orderBy('created_at', 'DESC');
-                    break;
-                case 'title_asc':
-                    $query->orderBy('title', 'ASC');
-                    break;
-                case 'title_desc':
-                    $query->orderBy('title', 'DESC');
+                    $query->orderBy('created_at', 'desc');
                     break;
                 case 'price_asc':
-                    $query->orderBy('price', 'ASC');
+                    $query->orderBy('price', 'asc');
                     break;
                 case 'price_desc':
-                    $query->orderBy('price', 'DESC');
+                    $query->orderBy('price', 'desc');
                     break;
+                case 'title_asc':
+                    $query->orderBy('name', 'asc');
+                    break;
+                case 'title_desc':
+                    $query->orderBy('name', 'desc');
+                    break;
+                // default nggak usah diapa-apain
             }
         }
 
-        $data['products_count_total'] = $query->count();
-        $data['products'] = $query->limit($limit)->offset($offset)->get();
-        $data['products_count_search'] = ($data['products_count_total'] == 0 ? 0 : (($page - 1) * $limit) + 1);
-        $data['products_count_end'] = ($data['products_count_total'] == 0 ? 0 : (($page - 1) * $limit) + count($data['products']));
+        $total = $query->count();
+        $products = $query->offset($offset)->limit($limit)->get();
 
-        return response()->json($data, 200);
-
-    } catch (\Exception $exception) {
-        throw new HttpException(500, 'Invalid data : ' . $exception->getMessage());
+        return response()->json([
+            'products_count_total' => $total,
+            'products_count_search' => $total > 0 ? $offset + 1 : 0,
+            'products_count_end' => $total > 0 ? $offset + count($products) : 0,
+            'products' => $products
+        ], 200);
+    } catch (\Exception $e) {
+        throw new \Symfony\Component\HttpKernel\Exception\HttpException(500, 'Invalid data : ' . $e->getMessage());
     }
 }
 
