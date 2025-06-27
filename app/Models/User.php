@@ -6,35 +6,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use OpenApi\Annotations as OA;
 
 /**
  * Class User.
- * 
+ *
  * @author Neshia Hilton <taneshia.422024002@civitas.ukrida.ac.id>
  * 
  * @OA\Schema(
- * schema="User",
- * title="User",
- * description="User model schema",
- * @OA\Property(property="id", type="integer", readOnly=true, example=1),
- * @OA\Property(property="name", type="string", example="John Doe"),
- * @OA\Property(property="email", type="string", format="email", example="user@example.com"),
- * @OA\Property(property="email_verified_at", type="string", format="date-time", readOnly=true, nullable=true, example="2025-06-27T01:21:49.000000Z"),
- * @OA\Property(property="created_at", type="string", format="date-time", readOnly=true, example="2025-06-27T01:21:49.000000Z"),
- * @OA\Property(property="updated_at", type="string", format="date-time", readOnly=true, example="2025-06-27T01:21:49.000000Z")
+ *     description="User model",
+ *     title="User model",
+ *     @OA\Xml(
+ *         name="User"
+ *     )
  * )
  */
-
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
@@ -45,7 +40,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -53,15 +48,84 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * @OA\Property(
+     *     title="ID",
+     *     description="ID",
+     *     format="int64",
+     *     example=1
+     * )
+     *
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @OA\Property(
+     *      title="Name",
+     *      description="Name of the user",
+     *      example="John Doe"
+     * )
+     *
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @OA\Property(
+     *      title="Email",
+     *      description="Email of the user",
+     *      example="john@example.com"
+     * )
+     *
+     * @var string
+     */
+    public $email;
+
+    /**
+     * @OA\Property(
+     *      title="Email Verified At",
+     *      description="Email verified at",
+     *      example="2020-01-27 17:50:45",
+     *      format="datetime",
+     *      type="string"
+     * )
+     *
+     * @var \DateTime
+     */
+    public $email_verified_at;
+
+    /**
+     * @OA\Property(
+     *     title="Created at",
+     *     description="Created at",
+     *     example="2020-01-27 17:50:45",
+     *     format="datetime",
+     *     type="string"
+     * )
+     *
+     * @var \DateTime
+     */
+    private $created_at;
+
+    /**
+     * @OA\Property(
+     *     title="Updated at",
+     *     description="Updated at",
+     *     example="2020-01-27 17:50:45",
+     *     format="datetime",
+     *     type="string"
+     * )
+     *
+     * @var \DateTime
+     */
+    private $updated_at;
 }

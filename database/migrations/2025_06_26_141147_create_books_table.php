@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bouquets', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id(); // Kolom ID auto-increment
             $table->string('name'); // Menggantikan 'title' untuk nama buket
             $table->text('description')->nullable(); // Deskripsi bunga, wrapping, dll.

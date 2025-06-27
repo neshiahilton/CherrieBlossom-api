@@ -5,22 +5,199 @@
         "description": "This  is the API documentation  for Cherrie Blossom.",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
-        "/api/bouquet": {
+        "/api/user/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Register new user & get token",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "example": {
+                                "name": "Augusta Ada Byron",
+                                "email": "ada.lovelace@gmail.com",
+                                "password": "Ba88a935",
+                                "password_confirmation": "Ba88a935"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Log in to existing user & get token",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "example": {
+                                "email": "ada.lovelace@gmail.com",
+                                "password": "Ba88a935"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/logout": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Log out & destroy self token",
+                "operationId": "logout",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/book": {
             "get": {
                 "tags": [
-                    "Bouquet"
+                    "book"
                 ],
-                "summary": "Display a list of all bouquets",
+                "summary": "Display a listing of items",
                 "operationId": "index",
+                "parameters": [
+                    {
+                        "name": "_page",
+                        "in": "query",
+                        "description": "current page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "_limit",
+                        "in": "query",
+                        "description": "max item in a page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 10
+                        }
+                    },
+                    {
+                        "name": "_search",
+                        "in": "query",
+                        "description": "word to search",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "_category",
+                        "in": "query",
+                        "description": "Filter berdasarkan kategori (contoh: Wedding, Graduation, Romance)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "_sort_by",
+                        "in": "query",
+                        "description": "Urutkan berdasarkan (contoh: price_asc, price_desc, latest_added)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "latest"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Successful",
+                        "description": "successful",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -31,43 +208,61 @@
             },
             "post": {
                 "tags": [
-                    "Bouquet"
+                    "book"
                 ],
-                "summary": "Store a new bouquet",
-                "operationId": "storeBouquet",
+                "summary": "Store a newly created item",
+                "description": "* @OA\\Post(\n*       path=\"/api/book\",\n*       tags={\"book\"},\n*       summary=\"Store a newly created item\",\n*       operationId=\"store\",\n*       @OA\\Response(\n*           response=400,\n*           description=\"Invalid input\",\n*           @OA\\JsonContent()\n*       ),\n*       @OA\\Response(\n*           response=201,\n*           description=\"Successful\",\n*           @OA\\JsonContent()\n*       ),\n*       @OA\\RequestBody(\n*           required=true,\n*           description=\"Request body description\",\n*           @OA\\JsonContent(\n*               ref=\"#/components/schemas/Book\",\n*               example={\"name\": \"Buket Bunga Lily Putih Elegan\", \"category\": \"Pernikahan\",\n*               \"image\": \"https://i.pinimg.com/564x/2b/9b/6c/2b9b6c23a02150d35b5a793623b5d3fe.jpg\",\n*               \"description\": \"Rangkaian bunga lily putih yang melambangkan kesucian dan ketulusan, cocok untuk hadiah di hari spesial atau sebagai dekorasi yang menawan.\",\n*               \"price\": 350000}\n*           )\n*       )\n* )",
+                "operationId": "store",
                 "requestBody": {
-                    "description": "Bouquet object that needs to be added to the store",
+                    "description": "Request body description",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Bouquet"
+                                "$ref": "#/components/schemas/Book"
+                            },
+                            "example": {
+                                "name": "Buket Bunga Lily Putih Elegan",
+                                "category": "Pernikahan",
+                                "image": "https://i.pinimg.com/564x/2b/9b/6c/2b9b6c23a02150d35b5a793623b5d3fe.jpg",
+                                "description": "Rangkaian bunga lily putih yang melambangkan kesucian dan ketulusan, cocok untuk hadiah di hari spesial atau sebagai dekorasi yang menawan.",
+                                "price": 350000
                             }
                         }
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Bouquet created successfully"
-                    },
                     "400": {
-                        "description": "Invalid data provided"
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }
         },
-        "/api/bouquet/{id}": {
+        "/api/book/{id}": {
             "get": {
                 "tags": [
-                    "Bouquet"
+                    "book"
                 ],
-                "summary": "Display a specific bouquet",
+                "summary": "Display the specified item",
                 "operationId": "show",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID of bouquet to return",
+                        "description": "ID of item that needs to be displayed",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -76,35 +271,43 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Successful operation",
+                    "404": {
+                        "description": "Item not found",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bouquet"
-                                }
+                                "schema": {}
                             }
                         }
                     },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
-                    "404": {
-                        "description": "Bouquet not found"
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             },
             "put": {
                 "tags": [
-                    "Bouquet"
+                    "book"
                 ],
-                "summary": "Update an existing bouquet",
-                "operationId": "updateBouquet",
+                "summary": "Update the specified item",
+                "operationId": "update",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID of bouquet that needs to be updated",
+                        "description": "ID of item that needs to be updated",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -113,46 +316,61 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "Bouquet object that needs to be updated",
+                    "description": "Request body description",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Bouquet"
+                                "$ref": "#/components/schemas/Book"
+                            },
+                            "example": {
+                                "name": "Buket Bunga Lily Putih Elegan",
+                                "category": "Pernikahan",
+                                "image": "https://i.pinimg.com/564x/2b/9b/6c/2b9b6c23a02150d35b5a793623b5d3fe.jpg",
+                                "description": "Rangkaian bunga lily putih yang melambangkan kesucian dan ketulusan, cocok untuk hadiah di hari spesial atau sebagai dekorasi yang menawan.",
+                                "price": 350000
                             }
                         }
                     }
                 },
                 "responses": {
-                    "200": {
-                        "description": "Successful operation",
+                    "404": {
+                        "description": "Item not found",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bouquet"
-                                }
+                                "schema": {}
                             }
                         }
                     },
                     "400": {
-                        "description": "Invalid data supplied"
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
-                    "404": {
-                        "description": "Bouquet not found"
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             },
             "delete": {
                 "tags": [
-                    "Bouquet"
+                    "book"
                 ],
-                "summary": "Delete a bouquet",
-                "operationId": "deleteBouquet",
+                "summary": "Remove the specified item",
+                "operationId": "destroy",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID of bouquet to be deleted",
+                        "description": "ID of item that needs to be removed",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -161,14 +379,29 @@
                     }
                 ],
                 "responses": {
-                    "204": {
-                        "description": "Successful, no content"
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
-                    "404": {
-                        "description": "Bouquet not found"
+                    "204": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }
@@ -176,101 +409,106 @@
     },
     "components": {
         "schemas": {
-            "Bouquet": {
+            "Book": {
+                "title": "Book model",
+                "description": "Book model",
                 "required": [
-                    "name",
-                    "price",
-                    "stock"
+                    "title",
+                    "author"
                 ],
-                "properties": {
-                    "id": {
-                        "description": "The unique identifier for the bouquet.",
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "name": {
-                        "description": "The name of the bouquet.",
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "A detailed description of the bouquet.",
-                        "type": "string"
-                    },
-                    "price": {
-                        "description": "The price of the bouquet.",
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "stock": {
-                        "description": "The available stock of the bouquet.",
-                        "type": "integer"
-                    },
-                    "image": {
-                        "description": "URL or path to the bouquet image.",
-                        "type": "string"
-                    },
-                    "created_at": {
-                        "description": "Creation timestamp.",
-                        "type": "string",
-                        "format": "date-time",
-                        "readOnly": true
-                    },
-                    "updated_at": {
-                        "description": "Last update timestamp.",
-                        "type": "string",
-                        "format": "date-time",
-                        "readOnly": true
-                    }
-                },
-                "type": "object"
+                "xml": {
+                    "name": "Book"
+                }
             },
             "User": {
-                "title": "User",
-                "description": "User model schema",
+                "title": "User model",
+                "description": "User model",
                 "properties": {
                     "id": {
-                        "description": "Class User.",
+                        "title": "ID",
+                        "description": "ID",
                         "type": "integer",
-                        "readOnly": true,
+                        "format": "int64",
                         "example": 1
                     },
                     "name": {
+                        "title": "Name",
+                        "description": "Name of the user",
                         "type": "string",
                         "example": "John Doe"
                     },
                     "email": {
+                        "title": "Email",
+                        "description": "Email of the user",
                         "type": "string",
-                        "format": "email",
-                        "example": "user@example.com"
+                        "example": "john@example.com"
                     },
                     "email_verified_at": {
+                        "title": "Email Verified At",
+                        "description": "Email verified at",
                         "type": "string",
-                        "format": "date-time",
-                        "readOnly": true,
-                        "example": "2025-06-27T01:21:49.000000Z",
-                        "nullable": true
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
                     },
                     "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
                         "type": "string",
-                        "format": "date-time",
-                        "readOnly": true,
-                        "example": "2025-06-27T01:21:49.000000Z"
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
                     },
                     "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
                         "type": "string",
-                        "format": "date-time",
-                        "readOnly": true,
-                        "example": "2025-06-27T01:21:49.000000Z"
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            }
+        },
+        "securitySchemes": {
+            "passport_token_ready": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Enter token in format without \"Bearer \"",
+                "name": "Authorization",
+                "in": "header"
+            },
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security.",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
+                        "scopes": []
+                    }
+                }
             }
         }
     },
     "tags": [
         {
-            "name": "Bouquet",
-            "description": "Bouquet"
+            "name": "user",
+            "description": "user"
+        },
+        {
+            "name": "book",
+            "description": "book"
+        }
+    ],
+    "security": [
+        {
+            "passport_token_ready": [],
+            "passport": []
         }
     ]
 }
