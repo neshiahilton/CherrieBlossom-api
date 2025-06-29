@@ -1,8 +1,11 @@
 let id_el_list = "#product-list";
+<<<<<<< HEAD
 let selectedColors = []; // Simpan warna yang dipilih user
 let selectedPriceRange = null; // Simpan harga yang dipilih user
 let selectedCategory = null; // Simpan category yang dipilih user
 
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
 
 function getDataOnEnter(event) {
     if (event.keyCode == 13) {
@@ -11,7 +14,11 @@ function getDataOnEnter(event) {
 }
 
 function getData(toPage = 1) {
+<<<<<<< HEAD
     let url = baseUrl + "/api/bouquet";
+=======
+    let url = baseUrl + "/api/book";
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     if (toPage) {
         $('[name="_page"]').val(toPage);
     }
@@ -22,6 +29,7 @@ function getData(toPage = 1) {
     };
 
     $("._filter").each(function () {
+<<<<<<< HEAD
         const name = $(this).attr("name");
 
         if ($(this).is(':checkbox') && !$(this).is(':checked')) return;
@@ -50,6 +58,11 @@ function getData(toPage = 1) {
     payload.category = selectedCategory;
     }
 
+=======
+        payload[$(this).attr("name")] = $(this).val();
+    });
+
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     axios
         .get(url, { params: payload }, apiHeaders)
         .then(function (response) {
@@ -62,6 +75,7 @@ function getData(toPage = 1) {
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="single-product-item text-center">
                         <div class="products-images">
+<<<<<<< HEAD
                             <a href="/bouquet/${item.id}" class="product-thumbnail">
                                 <img src="${item.image}" alt="${item.name}" class="product-thumbnail">
                             </a>
@@ -74,15 +88,40 @@ function getData(toPage = 1) {
                                     <i class="p-icon icon-bag2"></i>
                                     <span class="tool-tip">Add to cart</span>
                                 </a>
+=======
+                            <a href="/book/${
+                                item.id
+                            }" class="product-thumbnail">
+                                <img src="${item.cover}" alt="${item.title}" class="product-thumbnail">
+
+                            </a>
+                            <div class="product-actions">
+                                <a href="/book/${
+                                    item.id
+                                }"><i class="p-icon icon-plus"></i><span class="tool-tip">Quick View</span></a>
+                                <a href="#"><i class="p-icon icon-bag2"></i> <span class="tool-tip">Add to cart</span></a>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             </div>
                         </div>                          
                         <div class="product-content">
                             <h6 class="product-title">
+<<<<<<< HEAD
                                 <a href="/bouquet/${item.id}">${item.name}</a>
                             </h6>
                             <small class="text-color-primary">${item.category}</small>
                             <div class="product-price">
                                 <span class="new-price">IDR ${parseFloat(item.price).toLocaleString()}</span>
+=======
+                                <a href="/book/${item.id}">${item.title}</a>
+                            </h6>
+                            <small class="text-color-primary">${
+                                item.author
+                            }</small>
+                            <div class="product-price">
+                                <span class="new-price">IDR ${parseFloat(
+                                    item.price
+                                ).toLocaleString()}</span>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             </div>
                         </div>
                     </div>
@@ -110,7 +149,13 @@ function getData(toPage = 1) {
                         </a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a class="page-numbers" onclick="getData(${currentPage - 1})">
+=======
+                        <a class="page-numbers" onclick="getData(${
+                            currentPage - 1
+                        })">
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             ${currentPage - 1}
                         </a>
                     </li>`;
@@ -126,7 +171,13 @@ function getData(toPage = 1) {
             if (currentPage < maxPage) {
                 template += `
                     <li>
+<<<<<<< HEAD
                         <a class="page-numbers" onclick="getData(${currentPage + 1})">
+=======
+                        <a class="page-numbers" onclick="getData(${
+                            currentPage + 1
+                        })">
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             ${currentPage + 1}
                         </a>
                     </li>`;
@@ -135,7 +186,13 @@ function getData(toPage = 1) {
             if (currentPage + 1 < maxPage) {
                 template += `
                     <li>
+<<<<<<< HEAD
                         <a class="page-numbers" onclick="getData(${currentPage + 2})">
+=======
+                        <a class="page-numbers" onclick="getData(${
+                            currentPage + 2
+                        })">
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             ${currentPage + 2}
                         </a>
                     </li>`;
@@ -154,6 +211,10 @@ function getData(toPage = 1) {
             $('[name="_page"]').val(currentPage);
             // END-- pagination
         })
+<<<<<<< HEAD
+=======
+
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
         .catch(function (error) {
             console.log("[ERROR] response..", error);
             if (error.code == "ERR_BAD_REQUEST") {
@@ -180,6 +241,7 @@ function getData(toPage = 1) {
 $(function () {
     getData();
 });
+<<<<<<< HEAD
 
 // =====================
 // ⬇️ FILTER WARNA KLIK ⬇️
@@ -239,3 +301,5 @@ $(document).on('click', '.category-filter', function (e) {
 
     getData();
 });
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237

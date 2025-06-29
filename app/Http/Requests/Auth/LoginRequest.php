@@ -11,19 +11,26 @@ use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
+<<<<<<< HEAD
     /**
      * Determine if the user is authorized to make this request.
      */
+=======
+
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     public function authorize(): bool
     {
         return true;
     }
 
+<<<<<<< HEAD
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     public function rules(): array
     {
         return [
@@ -32,11 +39,14 @@ class LoginRequest extends FormRequest
         ];
     }
 
+<<<<<<< HEAD
     /**
      * Attempt to authenticate the request's credentials.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
@@ -52,11 +62,15 @@ class LoginRequest extends FormRequest
         RateLimiter::clear($this->throttleKey());
     }
 
+<<<<<<< HEAD
     /**
      * Ensure the login request is not rate limited.
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+=======
+
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     public function ensureIsNotRateLimited(): void
     {
         if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
@@ -75,9 +89,12 @@ class LoginRequest extends FormRequest
         ]);
     }
 
+<<<<<<< HEAD
     /**
      * Get the rate limiting throttle key for the request.
      */
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     public function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());

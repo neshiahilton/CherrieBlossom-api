@@ -39,8 +39,12 @@
 /*=============================================
 =             01. Default Css                 =
 =============================================*/
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+=======
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Mr+De+Haviland&family=Prata&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart");
 
 
@@ -59,7 +63,11 @@ body {
   font-style: normal;
   font-weight: 400;
   visibility: visible;
+<<<<<<< HEAD
   font-family: 'Baloo 2', cursive;
+=======
+  font-family: "Roboto", sans-serif;
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
   color: #000000;
   position: relative;
   background-color: #ffffff;
@@ -265,7 +273,11 @@ label {
 }
 
 .text-color-primary {
+<<<<<<< HEAD
   color: #f2a7a7;
+=======
+  color: 			#f2a7a7;
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
 }
 
 .text-color-secondary {
@@ -4235,7 +4247,11 @@ input[type=checkbox] {
 }
 
 .elendo-video-box {
+<<<<<<< HEAD
   background: url(../images/banners/flower.png);
+=======
+  background: url(../images/banners/video-banner.webp);
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
   min-height: 450px;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
@@ -4359,7 +4375,11 @@ input[type=checkbox] {
 
 .about-us-content_6 h2 {
   font-size: 60px;
+<<<<<<< HEAD
   font-family: 'Great Vibes', cursive;
+=======
+  font-family: "Mr De Haviland", cursive;
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
   margin-bottom: 20px;
 }
 .about-us-content_6 p {
@@ -5049,7 +5069,10 @@ input[type=checkbox] {
 /*=======================================
 =        11. Shop Pages Css           =
 =========================================*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
 .col__20 {
   position: relative;
   width: 100%;
@@ -5275,6 +5298,7 @@ input[type=checkbox] {
   opacity: 0.5;
   margin-right: 10px;
 }
+<<<<<<< HEAD
 .swatch-color.red {
   background-color: #dd3333;
 }
@@ -5321,6 +5345,25 @@ input[type=checkbox] {
     color: white;
     padding: 3px 10px;
     border-radius: 20px;
+=======
+.swatch-color.black {
+  background-color: #000000;
+}
+.swatch-color.green {
+  background-color: #81d742;
+}
+.swatch-color.grey {
+  background-color: #adadad;
+}
+.swatch-color.red {
+  background-color: #dd3333;
+}
+.swatch-color.white {
+  background-color: #f4f4f4;
+}
+.swatch-color.yellow {
+  background-color: #eeee22;
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
 }
 
 .shop-short-by {

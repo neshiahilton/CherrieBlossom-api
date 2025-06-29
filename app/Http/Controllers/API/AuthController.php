@@ -39,10 +39,17 @@ class AuthController extends Controller
      *         @OA\JsonContent(
      *             ref="#/components/schemas/User",
      *             example={
+<<<<<<< HEAD
      *                 "name": "Augusta Ada Byron",
      *                 "email": "ada.lovelace@gmail.com",
      *                 "password": "Ba88a935",
      *                 "password_confirmation": "Ba88a935"
+=======
+     *                 "name": "Taneshia Aurelia Hilton",
+     *                 "email": "taneshia@gmail.com",
+     *                 "password": "Ba88a93$",
+     *                 "password_confirmation": "Ba88a93$"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
      *             }
      *         )
      *     )
@@ -64,7 +71,11 @@ class AuthController extends Controller
             $request['password'] = Hash::make($request['password']);
             $request['remember_token'] = \Illuminate\Support\Str::random(10);
             $user = User::create($request->toArray());
+<<<<<<< HEAD
             $token = $user->createToken('<1st-name> REST API')->accessToken;
+=======
+            $token = $user->createToken('Taneshia REST API')->accessToken;
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
 
             return response()->json([
                 'name' => $request->name,
@@ -99,8 +110,13 @@ class AuthController extends Controller
      *         @OA\JsonContent(
      *             ref="#/components/schemas/User",
      *             example={
+<<<<<<< HEAD
      *                 "email": "ada.lovelace@gmail.com",
      *                 "password": "Ba88a935"
+=======
+     *                 "email": "taneshia@gmail.com",
+     *                 "password": "Ba88a93$"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
      *             }
      *         )
      *     )

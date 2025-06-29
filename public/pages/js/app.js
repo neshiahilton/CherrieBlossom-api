@@ -15,11 +15,14 @@ function randomIntFromInterval(min, max) {
 }
 
 function breakWord(text) {
+<<<<<<< HEAD
     if (typeof text !== "string" || !text.trim()) {
         console.warn("breakWord: input tidak valid:", text);
         return "";
     }
 
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     let array = text.split(" ");
     let len = 2;
 

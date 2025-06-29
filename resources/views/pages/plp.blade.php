@@ -7,6 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-3 order-md-1 order-md-2 small-mt__40">
+<<<<<<< HEAD
                     <!-- Category Filter -->
                     <div class="shop-widget widget-shop-publishers mt-3">
                         <div class="product-filter">
@@ -17,6 +18,28 @@
                                 <option value="lilies">Lilies</option>
                                 <option value="sunflowers">Sunflowers</option>
                                 <option value="mixed">Mixed Bouquets</option>
+=======
+                    <!-- Publishers Filter -->
+                    <div class="shop-widget widget-shop-publishers mt-3">
+                        <div class="product-filter">
+                            <h6 class="mb-20">Publishers</h6>
+                            <select class="_filter form-select form-select-sm" name="_publisher" onchange="getData()">
+                                <option value="" selected>All</option>
+                                <option value="putnam">Putnam</option>
+                                <option value="harriman house">Harriman House</option>
+                                <option value="balai pustaka">Balai Pustaka</option>
+                                <option value="lentera dipantara">Lentera Dipantara</option>
+                                <option value="pan books">Pan Books</option>
+                                <option value="firefly books">Firefly Books</option>
+                                <option value="gramedia">Gramedia</option>
+                                <option value="scholastic">Scholastic</option>
+                                <option value="harper">Harper</option>
+                                <option value="dk children">DK Children</option>
+                                <option value="bentang pustaka">Bentang Pustaka</option>
+                                <option value="gagas media">Gagas Media</option>
+                                <option value="grasindo">Grasindo</option>
+                                <option value="marjin kiri">Marjin Kiri</option>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             </select>
                         </div>
                     </div>
@@ -25,6 +48,7 @@
                     <div class="shop-widget widget-color">
                         <div class="product-filter">
                             <h6 class="mb-20">Color</h6>
+<<<<<<< HEAD
                             <ul class="widget-nav-list" id="color-filter">
                                 <li><a href="#" class="swatch-filter" data-color="red"><span class="swatch-color red"></span></a></li>
                                 <li><a href="#" class="swatch-filter" data-color="orange"><span class="swatch-color orange"></span></a></li>
@@ -32,6 +56,15 @@
                                 <li><a href="#" class="swatch-filter" data-color="blue"><span class="swatch-color blue"></span></a></li>
                                 <li><a href="#" class="swatch-filter" data-color="purple"><span class="swatch-color purple"></span></a></li>
                                 <li><a href="#" class="swatch-filter" data-color="pink"><span class="swatch-color pink"></span></a></li>
+=======
+                            <ul class="widget-nav-list">
+                                <li><a href="#"><span class="swatch-color black"></span></a></li>
+                                <li><a href="#"><span class="swatch-color green"></span></a></li>
+                                <li><a href="#"><span class="swatch-color grey"></span></a></li>
+                                <li><a href="#"><span class="swatch-color red"></span></a></li>
+                                <li><a href="#"><span class="swatch-color white"></span></a></li>
+                                <li><a href="#"><span class="swatch-color yellow"></span></a></li>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             </ul>
                         </div>
                     </div>
@@ -39,16 +72,26 @@
                     <!-- Price Filter -->
                     <div class="shop-widget">
                         <div class="product-filter widget-price">
+<<<<<<< HEAD
                             <h6 class="mb-20">Price Range</h6>
                             <ul class="widget-nav-list" id="price-range-filter">
                                 <li><a href="#" class="price-filter" data-range="under_100">Under IDR 100K</a></li>
                                 <li><a href="#" class="price-filter" data-range="100_250">IDR 100K–250K</a></li>
                                 <li><a href="#" class="price-filter" data-range="250_500">IDR 250K–500K</a></li>
                                 <li><a href="#" class="price-filter" data-range="above_500">Above IDR 500K</a></li>
+=======
+                            <h6 class="mb-20">Price</h6>
+                            <ul class="widget-nav-list">
+                                <li><a href="#">Under IDR 100K</a></li>
+                                <li><a href="#">IDR 100-500K</a></li>
+                                <li><a href="#">IDR 501-1000K</a></li>
+                                <li><a href="#">Above IDR 1000K</a></li>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             </ul>
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <!-- Category Filter -->
                     <div class="shop-widget">
                         <div class="product-filter">
@@ -59,6 +102,38 @@
                                 <a href="#" class="category-filter" data-category="Anniversary">Anniversary</a>
                                 <a href="#" class="category-filter" data-category="Graduation">Graduation</a>
                                 <a href="#" class="category-filter" data-category="Valentine's">Valentine's</a>
+=======
+                    <!-- Tags Filter -->
+                    <div class="shop-widget">
+                        <div class="product-filter">
+                            <h6 class="mb-20">Tags</h6>
+                            <div class="blog-tagcloud">
+                                 <a href="#">Drone</a>
+                                    <a href="#">Drone</a>
+                                    <a href="#">FPV</a>
+                                    <a href="#">Aerial Photography</a>
+                                    <a href="#">Cinematic</a>
+                                    <a href="#">4K Video</a>
+                                    <a href="#">8K Video</a>
+                                    <a href="#">DJI</a>
+                                    <a href="#">Flight Time</a>
+                                    <a href="#">Battery Life</a>
+                                    <a href="#">GPS</a>
+                                    <a href="#">Autonomous</a>
+                                    <a href="#">Controller</a>
+                                    <a href="#">FPV Goggles</a>
+                                    <a href="#">Mapping</a>
+                                    <a href="#">Survey</a>
+                                    <a href="#">Payload</a>
+                                    <a href="#">Brushless Motor</a>
+                                    <a href="#">Propeller</a>
+                                    <a href="#">Drone Show</a>
+                                    <a href="#">Agriculture Drone</a>
+                                    <a href="#">Thermal Camera</a>
+                                    <a href="#">Drone Racing</a>
+                                    <a href="#">No-Fly Zone</a>
+                                    <a href="#">Drone Law</a>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             </div>
                         </div>
                     </div>
@@ -78,8 +153,13 @@
                             </div>
                             <div class="shop-toolbar__item">
                                 <select class="_filter form-select form-select-sm" name="_sort_by" onchange="getData()">
+<<<<<<< HEAD
                                     <option value="name_asc">Sort by A-Z</option>
                                     <option value="name_desc">Sort by Z-A</option>
+=======
+                                    <option value="title_asc">Sort by A-Z</option>
+                                    <option value="title_desc">Sort by Z-A</option>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                     <option value="latest_publication">Sort by latest</option>
                                     <option value="latest_added">Sort by time added</option>
                                     <option value="price_asc">Sort by price: low to high</option>
@@ -92,7 +172,11 @@
                             <div class="header-right-search">
                                 <div class="header-search-box">
                                     <input class="_filter search-field" name="_search" type="text"
+<<<<<<< HEAD
                                         onkeypress="getDataOnEnter(event)" placeholder="Search by flower name or type...">
+=======
+                                        onkeypress="getDataOnEnter(event)" placeholder="Search by title or author...">
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                     <button class="search-icon"><i class="icon-magnifier"></i></button>
                                 </div>
                             </div>

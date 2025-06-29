@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+<<<<<<< HEAD
     /**
      * The application's global HTTP middleware stack.
      *
@@ -13,6 +14,9 @@ class Kernel extends HttpKernel
      *
      * @var array<int, class-string|string>
      */
+=======
+
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -23,11 +27,15 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
+<<<<<<< HEAD
     /**
      * The application's route middleware groups.
      *
      * @var array<string, array<int, class-string|string>>
      */
+=======
+
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
@@ -45,6 +53,7 @@ class Kernel extends HttpKernel
         ],
     ];
 
+<<<<<<< HEAD
     /**
      * The application's route middleware.
      *
@@ -52,6 +61,8 @@ class Kernel extends HttpKernel
      *
      * @var array<string, class-string|string>
      */
+=======
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

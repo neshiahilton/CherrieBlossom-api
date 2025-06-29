@@ -34,10 +34,17 @@
                         <nav class="navigation-menu">
                             <ul class="justify-content-center">
                                 <li>
+<<<<<<< HEAD
                                     <a href="{{route('home')}}" style="color: #f2a7a7;"><span>Home</span></a>
                                 </li>
                                 <li>
                                     <a href="{{route('plp')}}" style="color: #f2a7a7;"><span>Shop</span></a>
+=======
+                                    <a href="{{route('home')}}"><span>Home</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('plp')}}"><span>Shop</span></a>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                 </li>
                             </ul>
                         </nav>
@@ -47,15 +54,24 @@
                 <div class="col-lg-3 col-lg-3 col-6">
                     <div class="header-right-side text-end">
                         <div class="header-right-items d-none d-md-block">
+<<<<<<< HEAD
                             <a href="#" class="header-cart">
                                 <i class="icon-heart"style="color: #f2a7a7;"></i>
+=======
+                            <a href="#wishlist" class="header-cart">
+                                <i class="icon-heart"></i>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                 <span class="item-counter">3</span>
                             </a>
                         </div>
 
                         <div class="header-right-items">
                             <a href="#minicart" class="header-cart">
+<<<<<<< HEAD
                                 <i class="icon-bag2"style="color: #f2a7a7;"></i>
+=======
+                                <i class="icon-bag2"></i>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                 <span class="item-counter">3</span>
                             </a>
                         </div>
@@ -63,7 +79,11 @@
                         <div class="header-right-items  d-none d-md-block">
                             @if(@$_COOKIE['ut'])
                                 <div class="dropdown">
+<<<<<<< HEAD
                                     <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: #f2a7a7;">
+=======
+                                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                         Hello, {{ucwords(substr($_COOKIE['ue'], 0, 5))}}
                                     </a>
                                     <ul class="dropdown-menu">
@@ -73,7 +93,11 @@
                                 </div>
                             @else
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#authModal">
+<<<<<<< HEAD
                                     <i class="icon-user" style="color: #f2a7a7;"></i>
+=======
+                                    <i class="icon-user"></i>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                 </a>
                             @endif
                         </div>

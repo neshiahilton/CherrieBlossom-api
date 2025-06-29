@@ -12,7 +12,11 @@ use OpenApi\Annotations as OA;
 /**
  * Class User.
  *
+<<<<<<< HEAD
  * @author Neshia Hilton <taneshia.422024002@civitas.ukrida.ac.id>
+=======
+ * @author GilberthVittho <gilberth.422024003@ukrida.ac.id>
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
  *
  * @OA\Schema(
  *     description="User model",
