@@ -8,11 +8,11 @@ function getDataByWindowUrlKey() {
         .then(function (response) {
             let product = response.data.data;
             console.log('[DATA] response..', product);
+
             let template = '';
 
-            // Handle cover image
             let coverPath = product.image;
-            if (coverPath && !coverPath.startsWith('/')) {
+            if (!coverPath.startsWith('/')) {
                 coverPath = '/' + coverPath;
             }
 
@@ -27,7 +27,7 @@ function getDataByWindowUrlKey() {
             $('#product-category').html(product.category ?? '-');
             $('#product-flower-type').html(product.type ?? '-');
 
-            // Review stars (simulasi)
+            // Review stars (random)
             let stars = randomIntFromInterval(3, 5);
             template = '';
             for (let i = 0; i < 5; i++) {
@@ -36,7 +36,7 @@ function getDataByWindowUrlKey() {
             $('#product-review-stars').html(template);
             $('#product-review-body-count').html(randomIntFromInterval(5, 200) + ' customer reviews');
 
-            // Stock status (simulasi)
+            // Stock status (random)
             let statusStock = randomIntFromInterval(0, 1);
             $('#product-status-stock').removeClass('in-stock out-of-stock');
             $('#product-status-stock').addClass(statusStock ? 'in-stock' : 'out-of-stock');
@@ -53,19 +53,6 @@ function getDataByWindowUrlKey() {
                 $('.product-add-to-cart').show();
                 $('.product-add-to-cart-is-disabled').hide();
             }
-
-            // Tags (random)
-            let collectionOfTag = [
-                'Fresh Flowers', 'Anniversary', 'Graduation',
-                'Romantic', 'Birthday', 'Elegant', 'Pastel Theme',
-                'Valentine', 'Sympathy', 'Wedding'
-            ];
-            let selectedTags = collectionOfTag.sort(() => 0.5 - Math.random()).slice(0, 4);
-            template = '';
-            for (let i = 0; i < selectedTags.length; i++) {
-                template += `<a href="#">${selectedTags[i]}</a>${i !== selectedTags.length - 1 ? ', ' : ''}`;
-            }
-            $('#product-tags').html(template);
 
             // Thumbnails
             if (product.thumbnails) {
@@ -119,8 +106,47 @@ function getDataByWindowUrlKey() {
             $('.product-details-thumbs-2').html(thumbTemplate);
 
         })
+
         .catch(function (error) {
             console.log('[ERROR] response..', error);
+            $('#product-name').html(product.title);
+            $('#product-price').html("IDR " + parseFloat(product.price).toLocaleString());
+            $('#product-description').html(product.description);
+
+            // Random review stars
+            let stars = randomIntFromInterval(1, 5);
+            template = '';
+            for (let index = 0; index < 5; index++) {
+                template += '<i class="' + (index < stars ? 'yellow' : '') + ' icon_star"></i>';
+            }
+            $('#product-review-stars').html(template);
+            $('#product-review-body-count').html(randomIntFromInterval(1, 1000) + ' customer review');
+
+            // Stock status
+            let statusStock = randomIntFromInterval(0, 1);
+            $('#product-status-stock').addClass(statusStock ? 'in-stock' : 'out-of-stock');
+            $('#product-status-stock').html(statusStock ? '<p>Available: <span>In stock</span></p>' : "<p>Available: <span>Out of stock</span></p>");
+            if (!statusStock) {
+                $('.product-add-to-cart').hide();
+                $('.product-add-to-cart-is-disabled').show();
+            }
+
+            // Tags
+            let collectionOfTag = [
+                'Book', 'EBook', 'Best Seller', 'Fiction', 'Education',
+                'Literature', 'Classics', 'Real Event', 'Young Adult',
+                'Religion', 'Health', 'Comic', 'Horror', 'Poem',
+                'Filmed', 'Encyclopedia', 'In English', 'In Indonesian'
+            ];
+            let selectedTags = collectionOfTag.sort(() => .5 - Math.random()).slice(0, 4);
+            template = '';
+            for (let index = 0; index < selectedTags.length; index++) {
+                template += '<a href="#">' + selectedTags[index] + '</a>' + (index !== selectedTags.length - 1 ? ', ' : '');
+            }
+            $('#product-tags').html(template);
+        })
+        .catch(function (error) {
+            console.log('[ERROR] response..', error.code);
             if (error.code === "ERR_BAD_REQUEST") {
                 Swal.fire({
                     position: "top-end",
@@ -157,3 +183,36 @@ $(function () {
     getDataByWindowUrlKey();
 });
 
+$(document).on('click', '.add-to-wishlist', function () {
+    const token = localStorage.getItem('access_token');
+    const productId = $(this).data('id');
+
+    if (!token) {
+        // Simpan ke localStorage guest
+        let wishlistKey = 'guest_wishlist';
+        let stored = localStorage.getItem(wishlistKey);
+        let ids = stored ? JSON.parse(stored) : [];
+
+        if (!ids.includes(productId)) {
+            ids.push(productId);
+            localStorage.setItem(wishlistKey, JSON.stringify(ids));
+            alert('Ditambahkan ke wishlist (tanpa login)');
+        } else {
+            alert('Sudah ada di wishlist');
+        }
+        return;
+    }
+
+    // Kalau sudah login
+    axios.post('/api/wishlist', {
+        bouquet_id: productId
+    }, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(() => {
+        alert('Ditambahkan ke wishlist kamu!');
+    }).catch(() => {
+        alert('Gagal menambahkan ke wishlist');
+    });
+});

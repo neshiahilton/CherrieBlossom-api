@@ -44,6 +44,7 @@ function getCookie(name) {
 // === LOGOUT ===
 $("#logout-btn").on("click", function () {
     const token = getCookie("ut");
+    console.log("Token dari cookie:", token);
     if (!token) {
         Swal.fire({
             icon: "error",
@@ -52,13 +53,13 @@ $("#logout-btn").on("click", function () {
         return;
     }
 
-    const headers = {
-        headers: {
-            Authorization: "Bearer " + token,
-            Accept: "application/json",
-        },
-        withCredentials: true,
-    };
+        const headers = {
+            headers: {
+                Authorization: token ? "Bearer " + token : "",
+                Accept: "application/json",
+            },
+        };
+
 
     axios
         .post(baseUrl + "/api/auth/logout", {}, headers)

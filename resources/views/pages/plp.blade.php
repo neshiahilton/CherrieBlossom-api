@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-3 order-md-1 order-md-2 small-mt__40">
-                    <!-- Category Filter -->
+                    <!-- Type Filter -->
                     <div class="shop-widget widget-shop-publishers mt-3">
                         <div class="product-filter">
                             <h6 class="mb-20">Flower Type</h6>

@@ -1,32 +1,40 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\WishlistController;
+use App\Http\Controllers\API\BouquetController;
+use App\Http\Controllers\API\ProfileController;
+use App\Models\Bouquet;
+
 
 Route::get('/', function () {
     return view('pages.home'); // atau 'home' tergantung file yang kamu punya
 })->name('home');
 
+// WISHLIST
+Route::get('/wishlist', function () {
+    return view('pages.wishlist');
+})->name('wishlist');
 
+// CART
 Route::get('/cart', function () {
-    return view('cart'); // Pastikan view 'cart.blade.php' ada di folder resources/views
+    return view('pages.cart'); // Pastikan view 'cart.blade.php' ada di folder resources/views
 })->name('cart');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 Route::get('/bouquet', function () {
     return view('pages.plp');
 })->name('plp');
 
 
-Route::get('/bouquet/{id}', function () {
-    return view('pages.pdp');
+Route::get('/bouquet/{id}', function ($id) {
+    $bouquet = Bouquet::findOrFail($id);
+    return view('pages.pdp', compact('bouquet'));
 })->name('pdp');
-
-
-// Profile page
-Route::get('/profile', function () {
-    return view('profile'); // Pastikan ada file resources/views/profile.blade.php
-})->name('profile');
-
 
 // Logout dummy (sementara)
 Route::get('/logout', function () {

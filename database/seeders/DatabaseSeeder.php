@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+<<<<<<< HEAD
 public function run()
 {
     $this->call([
@@ -19,4 +20,10 @@ public function run()
     ]);
 }
 
+=======
+    public function run()
+    {
+
+    }
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
 }

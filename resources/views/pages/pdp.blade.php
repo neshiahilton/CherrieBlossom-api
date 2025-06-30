@@ -56,11 +56,10 @@
                                             Add to cart
                                         </button>
                                     </div>
-                                    <div class="quickview-wishlist button">
-                                        <a title="Add to wishlist" href="javascript:void(0);" onclick="addToWishlist({{ $bouquet->id }})">
-                                            <i class="icon-heart"></i>
-                                        </a>
-                                    </div>
+                                        <div class="quickview-wishlist button">
+                                            <button class="btn btn-danger add-to-wishlist" data-id="{{ $bouquet->id }}">
+                                                <i class="fa fa-heart"></i> Wishlist
+                                            </button>
                                 </div>
                             </div>
                         </div>

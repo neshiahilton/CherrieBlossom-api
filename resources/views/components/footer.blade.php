@@ -13,7 +13,6 @@
                         <li><a href="#" class="hover-style-link">Terms & Conditions</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-4 col-sm-6 footer-widget">
                     <h6 class="footer-widget__title mb-20">Company</h6>
                     <ul class="footer-widget__list">
@@ -23,7 +22,6 @@
                         <li><a href="#" class="hover-style-link">Contact Us</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-4 col-sm-6 footer-widget">
                     <h6 class="footer-widget__title mb-20">Social Media</h6>
                     <ul class="footer-widget__list">
@@ -32,7 +30,6 @@
                         <li><a href="#" class="hover-style-link">Instagram</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-6 col-sm-6 footer-widget">
                     <h6 class="footer-widget__title mb-20">Newsletter</h6>
                     <div class="footer-widget__newsletter mt-30">

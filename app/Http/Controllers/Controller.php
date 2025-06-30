@@ -13,7 +13,6 @@ use Illuminate\Routing\Controller as BaseController;
  *      description="This  is the API documentation  for Cherrie Blossom."
  * )
  */
-
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;

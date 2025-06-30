@@ -259,6 +259,13 @@ public function index(Request $request)
         ]);
     }
 
+public function showPage($id)
+{
+    $bouquet = Bouquet::findOrFail($id);
+
+    return view('pages.pdp', compact('bouquet'));
+}
+
     /**
      * @OA\Put(
      *      path="/api/bouquet/{id}",

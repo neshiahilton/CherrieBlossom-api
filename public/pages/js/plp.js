@@ -3,7 +3,6 @@ let selectedColors = []; // Simpan warna yang dipilih user
 let selectedPriceRange = null; // Simpan harga yang dipilih user
 let selectedCategory = null; // Simpan category yang dipilih user
 
-
 function getDataOnEnter(event) {
     if (event.keyCode == 13) {
         getData(1);
@@ -47,7 +46,7 @@ function getData(toPage = 1) {
 
     // Tambahkan filter category
     if (selectedCategory) {
-    payload.category = selectedCategory;
+        payload.category = selectedCategory;
     }
 
     axios
@@ -88,6 +87,7 @@ function getData(toPage = 1) {
                     </div>
                 </div>`;
             });
+
             $(id_el_list).html(template);
             // END-- products
 
@@ -98,9 +98,7 @@ function getData(toPage = 1) {
 
             template = "";
             let currentPage = parseInt(response.data.filter._page);
-            let maxPage = Math.ceil(
-                response.data.products_count_total / response.data.filter._limit
-            );
+            let maxPage = Math.ceil(response.data.products_count_total / response.data.filter._limit);
 
             if (currentPage > 1) {
                 template += `

@@ -47,16 +47,16 @@
                 <div class="col-lg-3 col-lg-3 col-6">
                     <div class="header-right-side text-end">
                         <div class="header-right-items d-none d-md-block">
-                            <a href="#" class="header-cart">
+                            <a href="{{ route('wishlist') }}" class="header-cart">
                                 <i class="icon-heart"style="color: #f2a7a7;"></i>
-                                <span class="item-counter">3</span>
+                                <span class="item-counter">4</span>
                             </a>
                         </div>
 
                         <div class="header-right-items">
-                            <a href="#minicart" class="header-cart">
+                            <a href="{{ route('cart') }}" class="header-cart">
                                 <i class="icon-bag2"style="color: #f2a7a7;"></i>
-                                <span class="item-counter">3</span>
+                                <span class="item-counter">2</span>
                             </a>
                         </div>
 
@@ -64,10 +64,10 @@
                             @if(@$_COOKIE['ut'])
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: #f2a7a7;">
-                                        Hello, {{ucwords(substr($_COOKIE['ue'], 0, 5))}}
+                                        Hello, {{ucwords(substr($_COOKIE['ue'], 0, 6))}}
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#my-profile"><span>My Profile</span></a></li>
+                                        <li><a href="{{ route('profile') }}"><span>My Profile</span></a></li>
                                         <li><a href="#" id="logout-btn"><span>Logout</span></a></li>
                                     </ul>
                                 </div>

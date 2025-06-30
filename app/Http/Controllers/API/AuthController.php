@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Models\User;
@@ -23,21 +24,12 @@ class AuthController extends Controller
      *     tags={"user"},
      *     summary="Register new user & get token",
      *     operationId="register",
-     *     @OA\Response(
-     *         response=400,
-     *         description="Invalid input",
-     *         @OA\JsonContent()
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Successful",
-     *         @OA\JsonContent()
-     *     ),
+     *     @OA\Response(response=400, description="Invalid input", @OA\JsonContent()),
+     *     @OA\Response(response=201, description="Successful", @OA\JsonContent()),
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body description",
+     *         description="Register input",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/User",
      *             example={
      *                 "name": "Augusta Ada Byron",
      *                 "email": "ada.lovelace@gmail.com",
@@ -50,30 +42,30 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
         try {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed',
-            ]);
+            $validated['password'] = Hash::make($validated['password']);
+            $validated['remember_token'] = \Illuminate\Support\Str::random(10);
 
-            if ($validator->fails()) {
-                throw new HttpException(400, $validator->messages()->first());
-            }
-
-            $request['password'] = Hash::make($request['password']);
-            $request['remember_token'] = \Illuminate\Support\Str::random(10);
-            $user = User::create($request->toArray());
+            $user = User::create($validated);
             $token = $user->createToken('<1st-name> REST API')->accessToken;
 
             return response()->json([
-                'name' => $request->name,
-                'email' => $request->get('email'),
+                'name' => $user->name,
+                'email' => $user->email,
                 'token' => $token
-            ], 200);
+            ], 201);
 
         } catch (\Exception $exception) {
-            throw new HttpException(400, "Invalid data : {$exception->getMessage()}");
+            return response()->json([
+                'message' => 'Registrasi gagal',
+                'error' => $exception->getMessage()
+            ], 400);
         }
     }
 
@@ -83,21 +75,12 @@ class AuthController extends Controller
      *     tags={"user"},
      *     summary="Log in to existing user & get token",
      *     operationId="login",
-     *     @OA\Response(
-     *         response=400,
-     *         description="Invalid input",
-     *         @OA\JsonContent()
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="successful",
-     *         @OA\JsonContent()
-     *     ),
+     *     @OA\Response(response=400, description="Invalid input", @OA\JsonContent()),
+     *     @OA\Response(response=200, description="Successful", @OA\JsonContent()),
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body description",
+     *         description="Login input",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/User",
      *             example={
      *                 "email": "ada.lovelace@gmail.com",
      *                 "password": "Ba88a935"
@@ -108,35 +91,32 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        $validated = $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+
         try {
-            $validator = Validator::make($request->all(), [
-                'email' => 'required|string|email|max:255',
-                'password' => 'required|string|min:6',
-            ]);
+            $user = User::where('email', $validated['email'])->first();
 
-            if ($validator->fails()) {
-                throw new HttpException(400, $validator->messages()->first());
+            if ($user && Hash::check($validated['password'], $user->password)) {
+                $token = $user->createToken('<1st-name> REST API')->accessToken;
+
+                return response()->json([
+                    'email' => $user->email,
+                    'token' => $token
+                ], 200);
             }
 
-            $user = User::where('email', $request->email)->first();
-
-            if ($user) {
-                if (Hash::check($request->password, $user->password)) {
-                    $token = $user->createToken('<1st-name> REST API')->accessToken;
-
-                    return response()->json([
-                        'email' => $request->get('email'),
-                        'token' => $token
-                    ], 200);
-                } else {
-                    return response()->json(['message' => 'Password mismatch'], 400);
-                }
-            } else {
-                return response()->json(['message' => 'User does not exist'], 400);
-            }
+            return response()->json([
+                'message' => $user ? 'Password salah' : 'User tidak ditemukan'
+            ], 400);
 
         } catch (\Exception $exception) {
-            throw new HttpException(400, "Invalid data : {$exception->getMessage()}");
+            return response()->json([
+                'message' => 'Login gagal',
+                'error' => $exception->getMessage()
+            ], 400);
         }
     }
 
@@ -146,37 +126,20 @@ class AuthController extends Controller
      *     tags={"user"},
      *     summary="Log out & destroy self token",
      *     operationId="logout",
-     *     @OA\Response(
-     *         response=400,
-     *         description="Invalid input",
-     *         @OA\JsonContent()
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="successful",
-     *         @OA\JsonContent()
-     *     ),
-     *     @OA\Parameter(
-     *         name="email",
-     *         in="path",
-     *         description="User Email",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string"
-     *         )
-     *     ),
+     *     @OA\Response(response=400, description="Invalid input", @OA\JsonContent()),
+     *     @OA\Response(response=200, description="Successful", @OA\JsonContent()),
      *     security={{"passport_token_ready":{},"passport":{}}}
      * )
      */
-    public function logout(Request $request)
+        public function logout(Request $request)
     {
-        try {
-            $token = $request->user()->token();
-            $token->revoke();
+        $user = Auth::user(); // ambil user dari token
 
-            return response()->json(['message' => 'You have been successfully logged out!'], 200);
-        } catch (\Exception $exception) {
-            throw new HttpException(400, "Invalid data : {$exception->getMessage()}");
+        if ($user) {
+            $user->token()->revoke(); // matikan token yang sedang aktif
+            return response()->json(['message' => 'Logged out successfully']);
         }
+
+        return response()->json(['message' => 'Unauthenticated.'], 401);
     }
 }

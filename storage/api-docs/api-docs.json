@@ -136,6 +136,7 @@
                 ]
             }
         },
+<<<<<<< HEAD
         "/api/bouquet": {
             "get": {
                 "tags": [
@@ -143,6 +144,67 @@
                 ],
                 "summary": "Display a listing of items",
                 "operationId": "index",
+=======
+        "/api/book": {
+            "get": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Display a listing of items",
+                "operationId": "index",
+                "parameters": [
+                    {
+                        "name": "_page",
+                        "in": "query",
+                        "description": "current page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "_limit",
+                        "in": "query",
+                        "description": "max item in a page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 10
+                        }
+                    },
+                    {
+                        "name": "_search",
+                        "in": "query",
+                        "description": "word to search",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "_publisher",
+                        "in": "query",
+                        "description": "search by publisher like name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "_sort_by",
+                        "in": "query",
+                        "description": "word to search",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "latest"
+                        }
+                    }
+                ],
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                 "responses": {
                     "200": {
                         "description": "successful",
@@ -153,6 +215,7 @@
                         }
                     }
                 }
+<<<<<<< HEAD
             },
             "post": {
                 "tags": [
@@ -204,6 +267,14 @@
             "get": {
                 "tags": [
                     "bouquet"
+=======
+            }
+        },
+        "/api/book/{id}": {
+            "get": {
+                "tags": [
+                    "book"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                 ],
                 "summary": "Display the specified item",
                 "operationId": "show",
@@ -248,7 +319,11 @@
             },
             "put": {
                 "tags": [
+<<<<<<< HEAD
                     "bouquet"
+=======
+                    "book"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                 ],
                 "summary": "Update the specified item",
                 "operationId": "update",
@@ -270,14 +345,22 @@
                     "content": {
                         "application/json": {
                             "schema": {
+<<<<<<< HEAD
                                 "$ref": "#/components/schemas/Bouquet"
+=======
+                                "$ref": "#/components/schemas/Book"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                             },
                             "example": {
                                 "title": "Eating Clean",
                                 "author": "Inge Tumiwa-Bachrens",
                                 "publisher": "Kawan Pustaka",
                                 "publication_year": "2016",
+<<<<<<< HEAD
                                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/bouquets/1482170055/33511107.jpg",
+=======
+                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055/33511107.jpg",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                                 "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
                                 "price": 85000
                             }
@@ -313,7 +396,11 @@
             },
             "delete": {
                 "tags": [
+<<<<<<< HEAD
                     "bouquet"
+=======
+                    "book"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                 ],
                 "summary": "Remove the specified item",
                 "operationId": "destroy",
@@ -360,9 +447,15 @@
     },
     "components": {
         "schemas": {
+<<<<<<< HEAD
             "Bouquet": {
                 "title": "Bouquet model",
                 "description": "Bouquet model",
+=======
+            "Book": {
+                "title": "Book model",
+                "description": "Book model",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                 "required": [
                     "title",
                     "author"
@@ -377,30 +470,47 @@
                     },
                     "title": {
                         "title": "Title",
+<<<<<<< HEAD
                         "description": "Title of the bouquet",
+=======
+                        "description": "Title of the book",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                         "type": "string",
                         "example": "Who Moved My Cheese?"
                     },
                     "author": {
                         "title": "Author",
+<<<<<<< HEAD
                         "description": "Author of the bouquet",
+=======
+                        "description": "Author of the book",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                         "type": "string",
                         "example": "Spencer Johnson"
                     },
                     "publisher": {
                         "title": "Publisher",
+<<<<<<< HEAD
                         "description": "Publisher of the bouquet",
+=======
+                        "description": "Publisher of the book",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                         "type": "string",
                         "example": "Putnam"
                     },
                     "publication_year": {
                         "title": "Publication Year",
+<<<<<<< HEAD
                         "description": "Publication year of the bouquet",
+=======
+                        "description": "Publication year of the book",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                         "type": "string",
                         "example": "1998"
                     },
                     "cover": {
                         "title": "Cover",
+<<<<<<< HEAD
                         "description": "Cover image URL of the bouquet",
                         "type": "string",
                         "example": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/bouquets/1388639171/4894.jpg"
@@ -408,12 +518,25 @@
                     "description": {
                         "title": "Description",
                         "description": "Description of the bouquet",
+=======
+                        "description": "Cover image URL of the book",
+                        "type": "string",
+                        "example": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388639171/4894.jpg"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the book",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                         "type": "string",
                         "example": "A simple parable that reveals profound truths about change"
                     },
                     "price": {
                         "title": "Price",
+<<<<<<< HEAD
                         "description": "Price of the bouquet",
+=======
+                        "description": "Price of the book",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                         "type": "integer",
                         "format": "int64",
                         "example": 45000
@@ -442,7 +565,11 @@
                 },
                 "type": "object",
                 "xml": {
+<<<<<<< HEAD
                     "name": "Bouquet"
+=======
+                    "name": "Book"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                 }
             },
             "User": {
@@ -511,9 +638,15 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
+<<<<<<< HEAD
                         "authorizationUrl": "http://localhost:8000/oauth/authorize",
                         "tokenUrl": "http://localhost:8000/oauth/token",
                         "refreshUrl": "http://localhost:8000/token/refresh",
+=======
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
                         "scopes": []
                     }
                 }
@@ -526,8 +659,13 @@
             "description": "user"
         },
         {
+<<<<<<< HEAD
             "name": "bouquet",
             "description": "bouquet"
+=======
+            "name": "book",
+            "description": "book"
+>>>>>>> 87acb19a53afffe166704ae86ca8b45675712237
         }
     ],
     "security": [

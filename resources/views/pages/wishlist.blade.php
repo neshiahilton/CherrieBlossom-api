@@ -1,5 +1,5 @@
-@extends('layouts.app-public') {{-- Ganti sesuai layout kamu --}}
-
+{{-- resources/views/wishlist.blade.php --}}
+@extends('layouts.app-public')
 @section('title', 'Wishlist')
 
 @section('content')
@@ -8,8 +8,8 @@
     <div class="container">
         <div class="breadcrumb-content text-center about-us-content_6">
             <h2>Wishlist</h2>
-            <p class="mt-5">Let your feelings bloom.
-            <span class="text-color-secondary">Explore our collection today.</span>
+            <p class="mt-5">Your wishlist is a blank canvas.
+            <span class="text-color-secondary">It's time to fill it with flowers that tell your story.</span>
             </p>
         </div>
     </div>
@@ -51,8 +51,10 @@
                 </div>
 
                 <!-- Product List Output -->
-                <div class="row" id="product-list"></div>
-
+                <div id="wishlist-container" class="row g-4">
+                    <!-- Isi wishlist via JS -->
+                </div>
+                
                 <!-- Pagination -->
                 <div class="row">
                     <div class="col-12">
